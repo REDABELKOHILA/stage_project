@@ -107,7 +107,6 @@ class ProductController extends Controller
         $order->address = $validatedData['address'];
         $order->phone = $validatedData['phone'];
 
-        // حفظ معلومات الطلب
         if ($order->save()) {
             // استرجاع المنتجات المرتبطة بالعميل
             $products = Product::where('id', session()->get('id'))->get();
