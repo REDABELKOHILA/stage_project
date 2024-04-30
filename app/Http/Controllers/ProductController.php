@@ -112,7 +112,6 @@ class ProductController extends Controller
             // استرجاع المنتجات المرتبطة بالعميل
             $products = Product::where('id', session()->get('id'))->get();
 
-            // حفظ معلومات كل منتج في جدول OrderItem
             foreach ($products as $product) {
                 $orderItem = new OrderItem();
                 $orderItem->product_id = $product->id; // افتراض أن productId هو مفتاح الخارجية لمعرف المنتج في جدول "المنتجات"
@@ -121,7 +120,6 @@ class ProductController extends Controller
                 $orderItem->save();
             }
 
-            // توجيه العميل إلى الصفحة السابقة مع رسالة نجاح
             return redirect()->back()->with('success', 'تم تقديم الطلب بنجاح.');
         }
     }
